@@ -1,0 +1,349 @@
+.highlights-section {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.highlights-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(72, 187, 120, 0.03) 0%, transparent 40%);
+  pointer-events: none;
+  animation: backgroundPulse 8s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  position: relative;
+  z-index: 2;
+}
+
+.highlight-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: clamp(2rem, 3vw, 3rem);
+  border-radius: clamp(12px, 2vw, 20px);
+  border-left: 6px solid;
+  border-image: linear-gradient(135deg, #667eea, #48bb78) 1;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  animation: cardReveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 2px 0 rgba(255, 255, 255, 0.8) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.highlight-card:nth-child(1) { animation-delay: 0.3s; border-image: linear-gradient(135deg, #667eea, #764ba2) 1; }
+.highlight-card:nth-child(2) { animation-delay: 0.4s; border-image: linear-gradient(135deg, #48bb78, #38a169) 1; }
+.highlight-card:nth-child(3) { animation-delay: 0.5s; border-image: linear-gradient(135deg, #ed8936, #dd6b20) 1; }
+.highlight-card:nth-child(4) { animation-delay: 0.6s; border-image: linear-gradient(135deg, #9f7aea, #805ad5) 1; }
+.highlight-card:nth-child(5) { animation-delay: 0.7s; border-image: linear-gradient(135deg, #f56565, #e53e3e) 1; }
+.highlight-card:nth-child(6) { animation-delay: 0.8s; border-image: linear-gradient(135deg, #0bc5ea, #00b5d8) 1; }
+.highlight-card:nth-child(7) { animation-delay: 0.9s; border-image: linear-gradient(135deg, #68d391, #48bb78) 1; }
+.highlight-card:nth-child(8) { animation-delay: 1.0s; border-image: linear-gradient(135deg, #b794f4, #9f7aea) 1; }
+
+@keyframes cardReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+  transition: left 0.6s ease;
+}
+
+.highlight-card:hover::before {
+  left: 100%;
+}
+
+.highlight-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(102, 126, 234, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.highlight-number {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  background: linear-gradient(135deg, #667eea, #48bb78);
+  color: white;
+  width: clamp(36px, 4vw, 50px);
+  height: clamp(36px, 4vw, 50px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  box-shadow: 
+    0 8px 20px rgba(102, 126, 234, 0.3),
+    0 2px 0 rgba(255, 255, 255, 0.2) inset;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+  border: 3px solid white;
+}
+
+.highlight-card:hover .highlight-number {
+  transform: scale(1.1) rotate(8deg);
+  box-shadow: 
+    0 12px 25px rgba(102, 126, 234, 0.4),
+    0 2px 0 rgba(255, 255, 255, 0.3) inset;
+}
+
+.highlight-text {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.7;
+  color: #4a5568;
+  margin: 0;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.highlight-card:hover .highlight-text {
+  color: #2d3748;
+}
+
+/* Individual card color variations */
+.highlight-card:nth-child(1):hover .highlight-number { background: linear-gradient(135deg, #5a6fd8, #6a4190); }
+.highlight-card:nth-child(2):hover .highlight-number { background: linear-gradient(135deg, #38a169, #2f855a); }
+.highlight-card:nth-child(3):hover .highlight-number { background: linear-gradient(135deg, #dd6b20, #c05621); }
+.highlight-card:nth-child(4):hover .highlight-number { background: linear-gradient(135deg, #805ad5, #6b46c1); }
+.highlight-card:nth-child(5):hover .highlight-number { background: linear-gradient(135deg, #e53e3e, #c53030); }
+.highlight-card:nth-child(6):hover .highlight-number { background: linear-gradient(135deg, #00b5d8, #00a3c4); }
+.highlight-card:nth-child(7):hover .highlight-number { background: linear-gradient(135deg, #48bb78, #38a169); }
+.highlight-card:nth-child(8):hover .highlight-number { background: linear-gradient(135deg, #9f7aea, #805ad5); }
+
+/* ========== ENHANCED RESPONSIVE BREAKPOINTS ========== */
+
+/* Large Tablets (1024px and below) */
+@media (max-width: 1024px) {
+  .highlights-grid {
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+  }
+  
+  .highlight-card {
+    padding: clamp(1.75rem, 2.5vw, 2.5rem);
+  }
+  
+  .highlight-number {
+    top: -18px;
+    left: -18px;
+  }
+}
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+  .highlights-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  
+  .highlight-card {
+    padding: clamp(1.5rem, 3vw, 2rem);
+    transform: translateY(30px) scale(0.98);
+  }
+  
+  .highlight-card:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+  
+  .highlight-number {
+    top: -16px;
+    left: -16px;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .highlight-text {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+  }
+}
+
+/* Large Mobile (640px and below) */
+@media (max-width: 640px) {
+  .highlights-grid {
+    gap: 1.25rem;
+  }
+  
+  .highlight-card {
+    padding: 1.75rem 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .highlight-number {
+    top: -14px;
+    left: -14px;
+    width: 38px;
+    height: 38px;
+    font-size: 0.95rem;
+  }
+  
+  .highlight-text {
+    line-height: 1.6;
+  }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .highlight-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 14px;
+    border-left-width: 5px;
+  }
+  
+  .highlight-number {
+    top: -12px;
+    left: -12px;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+    border-width: 2px;
+  }
+  
+  .highlight-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+/* Extra Small Mobile (375px and below) */
+@media (max-width: 375px) {
+  .highlight-card {
+    padding: 1.25rem 1rem;
+  }
+  
+  .highlight-number {
+    top: -10px;
+    left: -10px;
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+  }
+  
+  .highlight-text {
+    font-size: 0.875rem;
+  }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .highlight-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .highlights-section::before,
+  .highlight-card {
+    animation: none;
+  }
+  
+  .highlight-card {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .highlight-card:hover {
+    transform: none;
+  }
+  
+  .highlight-card:hover .highlight-number {
+    transform: none;
+  }
+  
+  .highlight-card::before {
+    display: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .highlight-card {
+    background: white;
+    border: 2px solid #667eea;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .highlight-number {
+    background: #667eea;
+    border: 2px solid white;
+  }
+}
+
+/* Performance Optimizations */
+.highlight-card {
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+}
+
+/* Focus Styles for Accessibility */
+.highlight-card:focus-within {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* Print Styles */
+@media print {
+  .highlights-section {
+    background: white !important;
+  }
+  
+  .highlight-card {
+    background: white !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e2e8f0 !important;
+    border-left: 4px solid #2c5530 !important;
+    break-inside: avoid;
+  }
+  
+  .highlight-number {
+    background: #2c5530 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
