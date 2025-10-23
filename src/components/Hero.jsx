@@ -31,10 +31,6 @@ const Hero = () => {
 
       <div className="container">
         <div className="hero-content">
-          <div className="hero-badge scroll-reveal">
-            Hybrid Conference: In Person + Online
-          </div>
-          
           <h1 className="hero-title scroll-reveal">
             International Conference on Applied Science, Engineering, Education, Business, Management and Social Science & Humanities (ICAEBMS 2026)
           </h1>
